@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="ru" class="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TwinWin — мозг вашей компании | by W2W</title>
+<meta name="description" content="TwinWin — корпоративный второй мозг. Все знания компании в одном AI-чате: документы, регламенты, встречи, переписки. Ответы за секунды, со ссылкой на источник. Enterprise: приватное развёртывание, данные не покидают ваш периметр." />
+
+<meta property="og:title" content="TwinWin — мозг вашей компании" />
+<meta property="og:description" content="Все знания компании в одном AI-чате. Ответы за 10 секунд, со ссылкой на документ. Приватное развёртывание для Enterprise. by W2W." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://javokhirai.github.io/twinwin-site/" />
+<meta property="og:image" content="https://javokhirai.github.io/twinwin-site/assets/og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#232325" />
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --green: #07E7B7;
+    --blue: #2E9DE0;
+    --blue-deep: #2E6BFF;
+    --black: #0B0B0C;
+    --black-light: #232325;
+    --grey: #5C5D5F;
+    --grey2: #AEAEAE;
+    --grey3: #F2F2F2;
+    --white: #FFFFFF;
+    --border: #E7E7E9;
+    --border-dark: #3A3A3D;
+    --grad: linear-gradient(120deg, #07E7B7 0%, #29B6E8 55%, #2E6BFF 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--black); font-family: 'Inter', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  img, svg { max-width: 100%; }
+
+  /* language switching */
+  html.ru .en { display: none !important; }
+  html.en .ru { display: none !important; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 88px 0; }
+  .accent { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey); margin-bottom: 14px; }
+  h2 { font-size: clamp(30px, 4.4vw, 46px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; margin-bottom: 14px; }
+  .lede { font-size: 18px; color: var(--grey); line-height: 1.6; max-width: 780px; }
+
+  /* header */
+  header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+  .header-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand .mark { width: 40px; height: 30px; flex-shrink: 0; }
+  .brand .word { font-weight: 900; font-size: 19px; letter-spacing: -0.02em; }
+  .brand .by { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--grey2); letter-spacing: 0.1em; margin-left: 2px; }
+  nav { display: flex; align-items: center; gap: 22px; }
+  nav a { text-decoration: none; font-size: 14.5px; font-weight: 500; color: var(--grey); }
+  nav a:hover { color: var(--black); }
+  .lang-btn { border: 1px solid var(--border); background: var(--white); border-radius: 8px; padding: 7px 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; cursor: pointer; letter-spacing: 0.08em; }
+  .lang-btn:hover { border-color: var(--green); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; border-radius: 10px; font-weight: 700; font-size: 15.5px; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; cursor: pointer; border: 0; }
+  .btn-sm { padding: 9px 18px; font-size: 14px; }
+  .btn-primary { background: var(--grad); color: #04211a; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 32px rgba(7, 231, 183, 0.3); }
+  .btn-ghost { background: transparent; color: var(--black); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--green); }
+  .btn-ghost-dark { background: transparent; color: var(--white); border: 1px solid var(--border-dark); }
+  .btn-ghost-dark:hover { border-color: var(--green); color: var(--green); }
+
+  /* hero */
+  .hero { padding: 96px 0 72px; }
+  .hero .badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: 100px; padding: 7px 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--grey); margin-bottom: 28px; }
+  .hero .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+  .hero h1 { font-size: clamp(40px, 6.6vw, 78px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.02; margin-bottom: 26px; max-width: 980px; }
+  .hero .sub { font-size: clamp(18px, 2.1vw, 22px); color: var(--grey); line-height: 1.5; max-width: 800px; margin-bottom: 40px; }
+  .hero .sub strong { color: var(--black); }
+  .ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+
+  /* numbers strip */
+  .numbers { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-top: 64px; }
+  .num-cell { background: var(--white); padding: 26px 22px; }
+  .num-cell .v { font-size: clamp(26px, 3.6vw, 38px); font-weight: 900; letter-spacing: -0.02em; line-height: 1; margin-bottom: 8px; }
+  .num-cell .l { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--grey); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.5; }
+
+  /* problem */
+  .problem { background: var(--grey3); }
+  .cards3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 44px; }
+  .pcard { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 30px 26px; }
+  .pcard .num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--grey2); letter-spacing: 0.12em; margin-bottom: 16px; }
+  .pcard h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.015em; margin-bottom: 10px; line-height: 1.25; }
+  .pcard p { font-size: 15px; color: var(--grey); line-height: 1.6; }
+
+  /* how it works */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin-top: 44px; }
+  .step { border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; position: relative; }
+  .step .k { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; margin-bottom: 14px; font-weight: 500; }
+  .step .k .accent { font-weight: 700; }
+  .step h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .step p { font-size: 14.5px; color: var(--grey); line-height: 1.6; }
+  .honesty { margin-top: 28px; border-left: 3px solid; border-image: var(--grad) 1; padding: 6px 0 6px 20px; font-size: 16px; color: var(--grey); line-height: 1.6; max-width: 760px; }
+  .honesty strong { color: var(--black); }
+
+  /* segments */
+  .segments { background: var(--black-light); color: var(--white); }
+  .segments h2 { color: var(--white); }
+  .segments .lede { color: var(--grey2); }
+  .seg-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 22px; margin-top: 48px; }
+  .seg { border-radius: 20px; padding: 38px 34px; display: flex; flex-direction: column; }
+  .seg-ent { background: #1B1B1D; border: 1px solid transparent; background-image: linear-gradient(#1B1B1D, #1B1B1D), var(--grad); background-origin: border-box; background-clip: padding-box, border-box; }
+  .seg-smb { background: #2A2A2D; border: 1px solid var(--border-dark); }
+  .seg .tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 18px; color: var(--grey2); }
+  .seg-ent .tag { color: var(--green); }
+  .seg h3 { font-size: 26px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .seg .for { font-size: 14.5px; color: var(--grey2); margin-bottom: 24px; line-height: 1.5; }
+  .seg ul { list-style: none; margin-bottom: 28px; flex-grow: 1; }
+  .seg li { font-size: 15px; line-height: 1.55; padding: 8px 0 8px 28px; position: relative; color: #E9E9EB; }
+  .seg li::before { content: ""; position: absolute; left: 0; top: 13px; width: 16px; height: 12px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 12"><path d="M1.5 6.5 L6 10.5 L14.5 1.5" fill="none" stroke="%2307E7B7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat center / contain; }
+  .seg .price { border-top: 1px solid var(--border-dark); padding-top: 22px; }
+  .seg .price .p { font-size: 30px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .seg .price .p small { font-size: 15px; font-weight: 600; color: var(--grey2); }
+  .seg .price .impl { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--grey2); letter-spacing: 0.05em; margin-bottom: 20px; }
+
+  /* case */
+  .case .box { border: 1px solid var(--border); border-radius: 20px; padding: 44px 40px; background: linear-gradient(135deg, rgba(7,231,183,0.05) 0%, rgba(46,107,255,0.04) 100%); margin-top: 44px; }
+  .case .quote { font-size: clamp(19px, 2.4vw, 25px); font-weight: 700; letter-spacing: -0.015em; line-height: 1.4; max-width: 860px; margin-bottom: 36px; }
+  .case-nums { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; }
+  .case-nums .cn .v { font-size: clamp(26px, 3.4vw, 36px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .case-nums .cn .l { font-size: 13.5px; color: var(--grey); line-height: 1.5; }
+  .case .src { margin-top: 32px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--grey2); letter-spacing: 0.04em; }
+
+  /* features */
+  .features { background: var(--grey3); }
+  .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 16px; margin-top: 44px; }
+  .feat { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 24px 22px; transition: transform .15s ease, border-color .2s ease; }
+  .feat:hover { transform: translateY(-2px); border-color: var(--green); }
+  .feat .ic { width: 38px; height: 38px; border-radius: 10px; background: var(--grad); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 18px; }
+  .feat h3 { font-size: 16.5px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .feat p { font-size: 14px; color: var(--grey); line-height: 1.55; }
+  .connectors { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .connectors .cl { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--grey); letter-spacing: 0.1em; text-transform: uppercase; margin-right: 8px; }
+  .chip { border: 1px solid var(--border); background: var(--white); border-radius: 100px; padding: 8px 16px; font-size: 13.5px; font-weight: 600; }
+
+  /* faq */
+  .faq-list { margin-top: 40px; max-width: 860px; }
+  details { border-bottom: 1px solid var(--border); }
+  details summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 22px 0; font-size: 17.5px; font-weight: 700; letter-spacing: -0.01em; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: "+"; font-size: 24px; font-weight: 400; color: var(--grey2); flex-shrink: 0; transition: transform .2s ease; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details .a { padding: 0 0 24px; font-size: 15.5px; color: var(--grey); line-height: 1.65; max-width: 780px; }
+  details .a strong { color: var(--black); }
+
+  /* w2w */
+  .w2w .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-top: 44px; }
+
+  /* final cta */
+  .final { background: var(--black-light); color: var(--white); }
+  .final .in { text-align: center; max-width: 760px; margin: 0 auto; }
+  .final h2 { color: var(--white); }
+  .final p { color: var(--grey2); font-size: 18px; line-height: 1.6; margin-bottom: 36px; }
+  .final .ctas { justify-content: center; }
+  .final .contacts { margin-top: 44px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 36px; font-size: 15px; }
+  .final .contacts a { color: var(--grey2); text-decoration: none; }
+  .final .contacts a:hover { color: var(--green); }
+  .final .contacts .label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--grey); margin-right: 8px; }
+
+  footer { background: var(--black-light); color: var(--grey); padding: 26px 0 34px; border-top: 1px solid var(--border-dark); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; }
+  footer .in { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  footer a { color: var(--grey2); text-decoration: none; }
+  footer a:hover { color: var(--green); }
+
+  @media (max-width: 860px) {
+    .seg-grid { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+    section { padding: 64px 0; }
+    .hero { padding: 64px 0 48px; }
+    .case .box { padding: 30px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-in">
+    <a class="brand" href="#top" aria-label="TwinWin">
+      <svg class="mark" viewBox="0 0 150 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="twg" x1="0" y1="0" x2="150" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#5DDFA0"/><stop offset="0.5" stop-color="#29B6E8"/><stop offset="1" stop-color="#2E6BFF"/>
+          </linearGradient>
+        </defs>
+        <path d="M14 52 L38 78 L76 16" stroke="url(#twg)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M74 52 L98 78 L136 16" stroke="url(#twg)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="word">TWINWIN</span>
+      <span class="by">by W2W</span>
+    </a>
+    <nav>
+      <span class="nav-links">
+        <a href="#how"><span class="ru">Как работает</span><span class="en">How it works</span></a>
+        <a href="#segments"><span class="ru">Тарифы</span><span class="en">Pricing</span></a>
+        <a href="#case"><span class="ru">Кейс</span><span class="en">Case study</span></a>
+        <a href="#faq">FAQ</a>
+      </span>
+      <button class="lang-btn" id="langToggle" aria-label="Switch language">EN</button>
+      <a class="btn btn-primary btn-sm" href="#contact"><span class="ru">Запросить демо</span><span class="en">Request a demo</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="badge"><span class="dot"></span><span>WIN TO WIN · IT PARK RESIDENT · TASHKENT</span></div>
+      <h1>
+        <span class="ru">Мозг вашей компании.<br/>Ответы за <span class="accent">10 секунд</span> —<br/>со ссылкой на документ.</span>
+        <span class="en">Your company's brain.<br/>Answers in <span class="accent">10 seconds</span> —<br/>with the source attached.</span>
+      </h1>
+      <p class="sub">
+        <span class="ru">ChatGPT знает весь интернет — и <strong>ничего о вашей компании</strong>. TwinWin подключает лучшие AI-модели к вашим документам, регламентам, встречам и перепискам. Сотрудники перестают искать и переспрашивать — они спрашивают мозг компании.</span>
+        <span class="en">ChatGPT knows the whole internet — and <strong>nothing about your company</strong>. TwinWin connects best-in-class AI models to your documents, policies, meetings and messages. Employees stop searching and re-asking — they ask the company brain.</span>
+      </p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#contact"><span class="ru">Запросить демо →</span><span class="en">Request a demo →</span></a>
+        <a class="btn btn-ghost" href="#segments"><span class="ru">Смотреть тарифы</span><span class="en">See pricing</span></a>
+      </div>
+
+      <div class="numbers">
+        <div class="num-cell"><div class="v"><span class="accent">~10 <span class="ru">сек</span><span class="en">sec</span></span></div><div class="l"><span class="ru">до ответа с цитатой</span><span class="en">to a cited answer</span></div></div>
+        <div class="num-cell"><div class="v"><span class="accent">RU·UZ·EN</span></div><div class="l"><span class="ru">отвечает на языке вопроса</span><span class="en">answers in your language</span></div></div>
+        <div class="num-cell"><div class="v"><span class="accent">100%</span></div><div class="l"><span class="ru">ответов — с источником [1][2]</span><span class="en">of answers carry sources [1][2]</span></div></div>
+        <div class="num-cell"><div class="v"><span class="accent">0</span></div><div class="l"><span class="ru">данных наружу — приватный инстанс</span><span class="en">data egress on a private instance</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ru">Проблема</span><span class="en">The problem</span></div>
+      <h2><span class="ru">Знания компании живут <span class="accent">в головах и чатах</span></span><span class="en">Company knowledge lives <span class="accent">in heads and chats</span></span></h2>
+      <div class="cards3">
+        <div class="pcard">
+          <div class="num">01</div>
+          <h3><span class="ru">Поиск съедает до 20% рабочего времени</span><span class="en">Search eats up to 20% of work time</span></h3>
+          <p><span class="ru">По данным McKinsey Global Institute, офисные сотрудники тратят до пятой части дня на поиск внутренней информации — в папках, чатах и у коллег.</span><span class="en">Per McKinsey Global Institute, office workers spend up to a fifth of their day hunting for internal information — in folders, chats and colleagues' heads.</span></p>
+        </div>
+        <div class="pcard">
+          <div class="num">02</div>
+          <h3><span class="ru">Уход сотрудника = потеря знаний</span><span class="en">An employee leaves — knowledge leaves</span></h3>
+          <p><span class="ru">Тарифы, условия клиентов, регламенты и договорённости уходят вместе с человеком. Новички месяцами входят в курс, переспрашивая одно и то же.</span><span class="en">Rates, client terms, procedures and agreements walk out the door with the person. New hires spend months re-asking the same questions.</span></p>
+        </div>
+        <div class="pcard">
+          <div class="num">03</div>
+          <h3><span class="ru">Решения теряются между встречами</span><span class="en">Decisions get lost between meetings</span></h3>
+          <p><span class="ru">Что решили месяц назад? Кому поручили? В каком документе условия? Ответ есть — но найти его быстрее, чем провести ещё одну встречу, не получается.</span><span class="en">What was decided a month ago? Who owns it? Which document has the terms? The answer exists — but finding it is slower than calling yet another meeting.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ru">Как работает</span><span class="en">How it works</span></div>
+      <h2><span class="ru">Подключаем ваши данные к <span class="accent">лучшим AI-моделям</span></span><span class="en">Your data, connected to <span class="accent">best-in-class AI</span></span></h2>
+      <p class="lede"><span class="ru">TwinWin — это не «своя нейросеть». Это ваши корпоративные данные, подключённые к лучшим моделям на рынке. Модель отвечает только на основе того, что есть в вашей базе знаний.</span><span class="en">TwinWin is not "our own neural net." It's your corporate data connected to the best models on the market. The model answers only from what's in your knowledge base.</span></p>
+      <div class="steps">
+        <div class="step">
+          <div class="k"><span class="accent">01 · CAPTURE</span></div>
+          <h3><span class="ru">Собираем</span><span class="en">Capture</span></h3>
+          <p><span class="ru">Документы (PDF, DOCX, XLSX), переписки, транскрипты встреч, база из CRM — всё стекается в одно хранилище.</span><span class="en">Documents (PDF, DOCX, XLSX), chats, meeting transcripts, CRM records — everything flows into one store.</span></p>
+        </div>
+        <div class="step">
+          <div class="k"><span class="accent">02 · STRUCTURE</span></div>
+          <h3><span class="ru">Индексируем</span><span class="en">Structure</span></h3>
+          <p><span class="ru">AI разбирает и индексирует контент с учётом прав доступа: кто спрашивает — тот и видит только своё.</span><span class="en">AI parses and indexes content with access rights baked in: you only ever see what you're allowed to see.</span></p>
+        </div>
+        <div class="step">
+          <div class="k"><span class="accent">03 · RECALL</span></div>
+          <h3><span class="ru">Отвечаем</span><span class="en">Recall</span></h3>
+          <p><span class="ru">Сотрудник задаёт вопрос в чате или Telegram — получает ответ с нумерованными ссылками [1][2] на конкретные документы.</span><span class="en">An employee asks in chat or Telegram — and gets an answer with numbered citations [1][2] pointing to the exact documents.</span></p>
+        </div>
+        <div class="step">
+          <div class="k"><span class="accent">04 · ACT</span></div>
+          <h3><span class="ru">Действуем</span><span class="en">Act</span></h3>
+          <p><span class="ru">Отчёты, черновики ответов, задачи из встреч — мозг не только помнит, но и помогает делать.</span><span class="en">Reports, reply drafts, tasks from meetings — the brain doesn't just remember, it helps you act.</span></p>
+        </div>
+      </div>
+      <p class="honesty"><span class="ru"><strong>Честность вместо галлюцинаций:</strong> если ответа нет в базе знаний — система прямо говорит «в базе этого нет», а не выдумывает.</span><span class="en"><strong>Honesty over hallucination:</strong> if the answer isn't in the knowledge base, the system says so — instead of making things up.</span></p>
+    </div>
+  </section>
+
+  <section id="segments" class="segments">
+    <div class="wrap">
+      <div class="eyebrow" style="color:#8b8b90;"><span class="ru">Два формата</span><span class="en">Two editions</span></div>
+      <h2><span class="ru">Enterprise — когда данные <span class="accent">не должны покидать периметр</span></span><span class="en">Enterprise — when data <span class="accent">must not leave your perimeter</span></span></h2>
+      <p class="lede"><span class="ru">Один продукт, два развёртывания. Отличия — в том, где живут ваши данные и как глубоко мы интегрируемся.</span><span class="en">One product, two deployments. The difference is where your data lives and how deep we integrate.</span></p>
+      <div class="seg-grid">
+
+        <div class="seg seg-ent">
+          <div class="tag">Enterprise · Private</div>
+          <h3><span class="ru">Приватный инстанс</span><span class="en">Private instance</span></h3>
+          <div class="for"><span class="ru">Банки, производства, холдинги, юридические фирмы — 200+ сотрудников, регулируемые данные.</span><span class="en">Banks, manufacturers, holdings, law firms — 200+ employees, regulated data.</span></div>
+          <ul>
+            <li><span class="ru">Развёртывание на вашем сервере или изолированном VPS в Узбекистане</span><span class="en">Deployed on your server or an isolated in-country VPS</span></li>
+            <li><span class="ru">Данные не покидают ваш периметр; опция полностью локальной LLM</span><span class="en">Data never leaves your perimeter; fully local LLM option</span></li>
+            <li><span class="ru">Права доступа применяются ДО генерации ответа — чужие файлы невидимы</span><span class="en">Permissions apply BEFORE generation — others' files stay invisible</span></li>
+            <li><span class="ru">Интеграции: Bitrix24, 1С, AmoCRM, Google Workspace, Telegram</span><span class="en">Integrations: Bitrix24, 1C, AmoCRM, Google Workspace, Telegram</span></li>
+            <li><span class="ru">Audit log каждого вопроса и ответа, SSO, SLA и выделенная поддержка</span><span class="en">Audit log of every Q&amp;A, SSO, SLA and dedicated support</span></li>
+          </ul>
+          <div class="price">
+            <div class="p">$1,500–5,000<small>/<span class="ru">мес</span><span class="en">mo</span></small></div>
+            <div class="impl"><span class="ru">внедрение — от $15,000</span><span class="en">implementation — from $15,000</span></div>
+            <a class="btn btn-primary" href="#contact"><span class="ru">Запросить демо →</span><span class="en">Request a demo →</span></a>
+          </div>
+        </div>
+
+        <div class="seg seg-smb">
+          <div class="tag">Business · Cloud</div>
+          <h3><span class="ru">Малый и средний бизнес</span><span class="en">Small &amp; mid-size business</span></h3>
+          <div class="for"><span class="ru">Компании 20–200 человек: облачный запуск «под ключ» за дни, а не месяцы.</span><span class="en">Companies of 20–200: turnkey cloud launch in days, not months.</span></div>
+          <ul>
+            <li><span class="ru">Облачное развёртывание — без своего железа и админов</span><span class="en">Cloud deployment — no hardware, no sysadmins needed</span></li>
+            <li><span class="ru">White-glove запуск: мы сами наполняем базу — никакого «пустого сейфа»</span><span class="en">White-glove launch: we fill the vault for you — no "empty vault" problem</span></li>
+            <li><span class="ru">Мультимодельность: несколько AI-моделей под одним интерфейсом</span><span class="en">Multi-model: several AI models behind one interface</span></li>
+            <li><span class="ru">Коллекции знаний по отделам + чат с цитатами</span><span class="en">Per-team knowledge collections + cited chat</span></li>
+            <li><span class="ru">Telegram-бот: мозг компании в мессенджере, где живёт бизнес</span><span class="en">Telegram bot: the company brain inside the messenger your business lives in</span></li>
+          </ul>
+          <div class="price">
+            <div class="p">$500–1,500<small>/<span class="ru">мес</span><span class="en">mo</span></small></div>
+            <div class="impl"><span class="ru">внедрение — от $5,000</span><span class="en">implementation — from $5,000</span></div>
+            <a class="btn btn-ghost-dark" href="#contact"><span class="ru">Обсудить запуск →</span><span class="en">Discuss a launch →</span></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="case" class="case">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ru">Кейс из продакшена</span><span class="en">Production case study</span></div>
+      <h2><span class="ru">Работает не в презентации — <span class="accent">в живой компании</span></span><span class="en">Running in a real company — <span class="accent">not in a slide deck</span></span></h2>
+      <div class="box">
+        <div class="quote"><span class="ru">«Крупная американская home-services компания: корпоративный AI-workspace, где сотрудники спрашивают компанию, а не друг друга — CRM, Slack, встречи и документы отвечают с одного endpoint».</span><span class="en">"A large US home-services company: a corporate AI workspace where employees ask the company, not each other — CRM, Slack, meetings and documents answer from a single endpoint."</span></div>
+        <div class="case-nums">
+          <div class="cn"><div class="v"><span class="accent">51</span></div><div class="l"><span class="ru">сотрудник работает в корпоративном AI-чате ежедневно</span><span class="en">employees use the corporate AI chat daily</span></div></div>
+          <div class="cn"><div class="v"><span class="accent">~$326<span style="font-size:0.55em;">/<span class="ru">мес</span><span class="en">mo</span></span></span></div><div class="l"><span class="ru">вся стоимость эксплуатации AI-workspace</span><span class="en">total AI-workspace running cost</span></div></div>
+          <div class="cn"><div class="v"><span class="accent">6 <span class="ru">источников</span><span class="en">sources</span></span></div><div class="l"><span class="ru">CRM, Slack, встречи, документы, дашборды — один endpoint, 18 готовых аналитических запросов</span><span class="en">CRM, Slack, meetings, docs, dashboards — one endpoint, 18 canned analytics queries</span></div></div>
+          <div class="cn"><div class="v"><span class="accent">20–90 <span class="ru">сек</span><span class="en">sec</span></span></div><div class="l"><span class="ru">ответ на вопрос к CRM вместо ручных выгрузок и BI-тикетов</span><span class="en">to answer a CRM question — no manual pulls, no BI tickets</span></div></div>
+        </div>
+        <div class="src"><span class="ru">Любимый пример: один запрос покрыл 6 встреч за день — на 4 из них человек вообще не был — и превратил их в 6 задач в бэклоге.</span><span class="en">Favorite example: one query covered 6 meetings in a day — 4 of them unattended — and turned them into 6 backlog items.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ru">Возможности</span><span class="en">Features</span></div>
+      <h2><span class="ru">Всё, что нужно <span class="accent">второму мозгу</span></span><span class="en">Everything a <span class="accent">second brain</span> needs</span></h2>
+      <div class="feat-grid">
+        <div class="feat"><div class="ic">🔗</div><h3><span class="ru">Ответы с источниками</span><span class="en">Cited answers</span></h3><p><span class="ru">Каждый ответ несёт ссылки [1][2] — клик открывает фрагмент документа-источника.</span><span class="en">Every answer carries [1][2] chips — click to open the source snippet.</span></p></div>
+        <div class="feat"><div class="ic">🌐</div><h3><span class="ru">RU / UZ / EN</span><span class="en">RU / UZ / EN</span></h3><p><span class="ru">Узбекский и русский — первоклассные языки, а не «остаточный перевод». Ответ — на языке вопроса.</span><span class="en">Uzbek and Russian as first-class languages, not an afterthought. Answers match the question's language.</span></p></div>
+        <div class="feat"><div class="ic">🔐</div><h3><span class="ru">Права до генерации</span><span class="en">Permissions before generation</span></h3><p><span class="ru">Поиск фильтруется по правам спрашивающего — модель физически не видит чужие документы.</span><span class="en">Retrieval is filtered by the asker's rights — the model physically never sees restricted docs.</span></p></div>
+        <div class="feat"><div class="ic">📋</div><h3>Audit log</h3><p><span class="ru">Каждый вопрос, ответ и процитированный документ фиксируются — полная прослеживаемость.</span><span class="en">Every question, answer and cited document is logged — full traceability.</span></p></div>
+        <div class="feat"><div class="ic">✈️</div><h3><span class="ru">Telegram-бот</span><span class="en">Telegram bot</span></h3><p><span class="ru">Мозг компании отвечает прямо в Telegram — там, где уже живёт бизнес в Узбекистане.</span><span class="en">The company brain answers right inside Telegram — where business already happens in Uzbekistan.</span></p></div>
+        <div class="feat"><div class="ic">🎙️</div><h3>Meeting Memory</h3><p><span class="ru">Встречи автоматически превращаются в структурированные заметки: решения, задачи, договорённости.</span><span class="en">Meetings auto-transcribe into structured notes: decisions, tasks, agreements.</span></p></div>
+        <div class="feat"><div class="ic">🧩</div><h3><span class="ru">Коннекторы</span><span class="en">Connectors</span></h3><p><span class="ru">Telegram, Google Drive, Gmail, Bitrix24, AmoCRM, 1С, Slack — подключаем то, где уже лежат ваши знания.</span><span class="en">Telegram, Google Drive, Gmail, Bitrix24, AmoCRM, 1C, Slack — we plug into where your knowledge already lives.</span></p></div>
+        <div class="feat"><div class="ic">📊</div><h3><span class="ru">Аналитика использования</span><span class="en">Usage analytics</span></h3><p><span class="ru">Что спрашивают, кто спрашивает, какие документы цитируются чаще всего — видно ROI.</span><span class="en">What's asked, who asks, which docs get cited most — ROI made visible.</span></p></div>
+      </div>
+      <div class="connectors">
+        <span class="cl"><span class="ru">Коннекторы:</span><span class="en">Connectors:</span></span>
+        <span class="chip">Telegram</span><span class="chip">Google Drive</span><span class="chip">Gmail</span><span class="chip">Bitrix24</span><span class="chip">AmoCRM</span><span class="chip">1C</span><span class="chip">Slack</span><span class="chip">Read.ai</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="eyebrow">FAQ</div>
+      <h2><span class="ru">Вопросы, которые задают <span class="accent">все</span></span><span class="en">The questions <span class="accent">everyone</span> asks</span></h2>
+      <div class="faq-list">
+        <details open>
+          <summary><span class="ru">Кто гарантирует, что это лучше ChatGPT? У OpenAI данные и код — небо и земля.</span><span class="en">Who says this beats ChatGPT? OpenAI's data and code are in another league.</span></summary>
+          <div class="a"><span class="ru">Никто и не утверждает, что наша модель умнее GPT — это не соревнование моделей. Внутри TwinWin работают те же лучшие модели рынка, подключённые через API. Разница в другом: <strong>ChatGPT знает весь интернет и ноль о вашей компании</strong>. Спросите его «что мы обещали клиенту X на прошлой неделе» — он не ответит, у него этих данных физически нет. TwinWin ответит за секунды, с цитатой из конкретного документа. Это «GPT, который никогда не работал в вашей компании» против «GPT, который прочитал всё, что вы накопили за годы».</span><span class="en">Nobody claims our model is smarter than GPT — it's not a model contest. Inside TwinWin run the same best-in-class models, connected via API. The difference: <strong>ChatGPT knows the whole internet and zero about your company</strong>. Ask it "what did we promise client X last week" — it can't answer; it physically doesn't have that data. TwinWin answers in seconds, citing the exact document. It's "GPT that never worked at your company" vs "GPT that has read everything you've accumulated for years."</span></div>
+        </details>
+        <details>
+          <summary><span class="ru">Наши данные утекут?</span><span class="en">Will our data leak?</span></summary>
+          <div class="a"><span class="ru">Enterprise-вариант разворачивается на вашем сервере или изолированном VPS — данные не покидают периметр, доступна полностью локальная модель. В облаке — изоляция тенантов и шифрование. В обоих случаях: права доступа применяются до генерации, и каждый вопрос фиксируется в audit log.</span><span class="en">The Enterprise edition deploys on your server or an isolated VPS — data never leaves your perimeter, with a fully local model option. In the cloud: tenant isolation and encryption. In both: permissions apply before generation, and every question hits the audit log.</span></div>
+        </details>
+        <details>
+          <summary><span class="ru">AI выдумывает. Как верить ответам?</span><span class="en">AI hallucinates. Why trust the answers?</span></summary>
+          <div class="a"><span class="ru">Каждый ответ несёт ссылку на источник — клик открывает документ. А если ответа в базе нет, система прямо говорит «в базе этого нет» вместо фантазий. Показываем вживую на демо.</span><span class="en">Every answer carries a source link — click opens the document. And when the base has no answer, the system says "not in the knowledge base" instead of inventing one. We show this live in the demo.</span></div>
+        </details>
+        <details>
+          <summary><span class="ru">У нас уже есть Bitrix24 / CRM. Зачем ещё одна система?</span><span class="en">We already have Bitrix24 / a CRM. Why another system?</span></summary>
+          <div class="a"><span class="ru">Мы не заменяем — мы подключаем. Bitrix24, 1С, AmoCRM, Drive и Telegram становятся источниками, а TwinWin отвечает по всем системам сразу. Один вопрос — один ответ, вместо поиска по пяти вкладкам.</span><span class="en">We don't replace — we connect. Bitrix24, 1C, AmoCRM, Drive and Telegram become sources, and TwinWin answers across all of them at once. One question — one answer, instead of digging through five tabs.</span></div>
+        </details>
+        <details>
+          <summary><span class="ru">Дорого.</span><span class="en">Too expensive.</span></summary>
+          <div class="a"><span class="ru">Посчитаем на демо на ваших цифрах: N сотрудников × часы поиска в неделю × ставка. Система окупается, если экономит 1–2 часа на сотрудника в месяц. Для сравнения: западный аналог Glean стартует примерно от $60,000 в год с минимумом в 100 лицензий.</span><span class="en">We'll calculate it live on your numbers: N employees × search hours per week × hourly rate. It pays back if it saves 1–2 hours per employee per month. For reference: the western analog Glean starts around $60,000/year with a 100-seat minimum.</span></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="w2w">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ru">Кто делает</span><span class="en">Who builds it</span></div>
+      <h2><span class="ru">Не идея в поисках команды — <span class="accent">работающая инженерная компания</span></span><span class="en">Not an idea looking for a team — <span class="accent">a working engineering company</span></span></h2>
+      <p class="lede"><span class="ru">TwinWin делает Win to Win (W2W) — IT-компания из Ташкента. Мы продаём систему, которую сами используем каждый день: наш собственный «второй мозг» работает на нашей компании и на живых клиентах.</span><span class="en">TwinWin is built by Win to Win (W2W), a Tashkent IT company. We sell the system we run ourselves every day: our own "second brain" powers our company and live clients.</span></p>
+      <div class="grid">
+        <div class="num-cell"><div class="v"><span class="accent">25</span></div><div class="l"><span class="ru">инженеров, дизайнеров, PM</span><span class="en">engineers, designers, PMs</span></div></div>
+        <div class="num-cell"><div class="v"><span class="accent">30+</span></div><div class="l"><span class="ru">клиентов, вкл. Hamkor Bank, Andersen</span><span class="en">clients incl. Hamkor Bank, Andersen</span></div></div>
+        <div class="num-cell"><div class="v"><span class="accent">$20–100K</span></div><div class="l"><span class="ru">контракты полного цикла</span><span class="en">full-cycle contracts</span></div></div>
+        <div class="num-cell"><div class="v"><span class="accent">IT Park</span></div><div class="l"><span class="ru">резидент, Ташкент, с 2023</span><span class="en">resident, Tashkent, since 2023</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="final">
+    <div class="wrap in">
+      <h2><span class="ru">Покажем на <span class="accent">ваших данных</span></span><span class="en">We'll demo it on <span class="accent">your data</span></span></h2>
+      <p><span class="ru">30 минут: загружаем ваши реальные документы, задаём ваши реальные вопросы — и вы сами видите ответы с источниками. Без слайдов.</span><span class="en">30 minutes: we load your real documents, ask your real questions — and you watch the cited answers appear. No slides.</span></p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="https://t.me/Javokhir_komiljonov"><span class="ru">Написать в Telegram →</span><span class="en">Message on Telegram →</span></a>
+        <a class="btn btn-ghost-dark" href="mailto:javokhir.k@alliancevs.io?subject=TwinWin%20Demo"><span class="ru">Запросить демо по email</span><span class="en">Request a demo by email</span></a>
+      </div>
+      <div class="contacts">
+        <span><span class="label">TELEGRAM</span><a href="https://t.me/Javokhir_komiljonov">@Javokhir_komiljonov</a></span>
+        <span><span class="label">EMAIL</span><a href="mailto:javokhir.k@alliancevs.io">javokhir.k@alliancevs.io</a></span>
+        <span><span class="label"><span class="ru">КОМПАНИЯ</span><span class="en">COMPANY</span></span><a href="https://w2w.uz" target="_blank" rel="noopener">w2w.uz</a></span>
+        <span><span class="label">LINKEDIN</span><a href="https://www.linkedin.com/company/106375826/" target="_blank" rel="noopener">W2W Group</a></span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap in">
+    <div>TWINWIN — <span class="ru">МОЗГ ВАШЕЙ КОМПАНИИ</span><span class="en">YOUR COMPANY'S BRAIN</span></div>
+    <div>© <a href="https://w2w.uz">WIN TO WIN LLC</a> · IT PARK RESIDENT · TASHKENT</div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('langToggle');
+    function setLang(l) {
+      root.classList.remove('ru', 'en');
+      root.classList.add(l);
+      root.setAttribute('lang', l);
+      btn.textContent = l === 'ru' ? 'EN' : 'RU';
+      try { localStorage.setItem('twinwin-lang', l); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('twinwin-lang'); } catch (e) {}
+    if (saved === 'en' || saved === 'ru') setLang(saved);
+    btn.addEventListener('click', function () {
+      setLang(root.classList.contains('ru') ? 'en' : 'ru');
+    });
+  })();
+</script>
+</body>
+</html>
