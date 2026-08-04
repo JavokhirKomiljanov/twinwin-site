@@ -183,13 +183,28 @@
   .ind-grid .feat .q { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.55; color: #0b8f74; }
 
   /* quiz */
-  .quiz { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 44px; }
-  .qf { border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 16px; background: var(--white); }
-  .qf label { display: block; font-size: 14.5px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; line-height: 1.4; }
+  .btn-test { background: transparent; color: var(--black); border: 1px solid transparent; background-image: linear-gradient(var(--white), var(--white)), var(--grad); background-origin: border-box; background-clip: padding-box, border-box; }
+  .btn-test:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(7, 231, 183, 0.18); }
+  .quiz-progress { display: flex; align-items: center; gap: 16px; margin-top: 40px; }
+  .quiz-progress .bar { flex: 1; height: 8px; border-radius: 100px; background: var(--grey3); overflow: hidden; }
+  .quiz-progress #qpFill { height: 100%; background: var(--grad); border-radius: 100px; width: 0; transition: width .3s ease; }
+  .quiz-progress #qpText { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--grey); letter-spacing: 0.08em; white-space: nowrap; }
+  .quiz { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 18px; }
+  .qf { border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 16px; background: var(--white); transition: border-color .2s ease, box-shadow .2s ease; }
+  .qf.answered { border-color: var(--green); }
+  .qf.missing { border-color: #E5484D; box-shadow: 0 0 0 3px rgba(229,72,77,0.14); }
+  .qf label { display: block; font-size: 14.5px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 12px; line-height: 1.4; }
   .qf .qn { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--grey2); letter-spacing: 0.1em; display: block; margin-bottom: 6px; }
-  .qf select { width: 100%; padding: 11px 12px; border: 1px solid var(--border); border-radius: 9px; font-family: 'Inter', sans-serif; font-size: 14.5px; background: var(--grey3); color: var(--black); cursor: pointer; }
-  .qf select:focus { outline: 2px solid var(--green); border-color: transparent; }
-  .quiz-actions { margin-top: 26px; }
+  .qf.answered .qn::after { content: " ✓"; color: #0b8f74; }
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .opt { padding: 9px 16px; border-radius: 100px; border: 1px solid var(--border); background: var(--grey3); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: var(--black); cursor: pointer; transition: border-color .15s ease, background .15s ease, transform .1s ease; }
+  .opt:hover { border-color: var(--green); transform: translateY(-1px); }
+  .opt.on { background: var(--grad); border-color: transparent; color: #04211a; font-weight: 700; }
+  .quiz-actions { margin-top: 26px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  #quizCalc { opacity: 0.55; transition: opacity .2s ease; }
+  #quizCalc.ready { opacity: 1; }
+  .quiz-hint { font-size: 13.5px; color: #E5484D; font-weight: 600; display: none; }
+  .quiz-hint.show { display: block; }
   .quiz-result { margin-top: 34px; border-radius: 20px; padding: 38px 34px; background: var(--black-light); color: var(--white); border: 1px solid transparent; background-image: linear-gradient(var(--black-light), var(--black-light)), var(--grad); background-origin: border-box; background-clip: padding-box, border-box; }
   .quiz-result h3 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 8px; }
   .quiz-result .verdict { color: var(--grey2); font-size: 16px; line-height: 1.55; margin-bottom: 26px; max-width: 760px; }
@@ -258,6 +273,7 @@
       </p>
       <div class="ctas">
         <a class="btn btn-primary" href="#contact"><span class="ru">Запросить демо →</span><span class="en">Request a demo →</span></a>
+        <a class="btn btn-test" href="#test"><span class="ru">⚡ Тест: сколько вы теряете?</span><span class="en">⚡ Quiz: how much are you losing?</span></a>
         <a class="btn btn-ghost" href="#segments"><span class="ru">Смотреть тарифы</span><span class="en">See pricing</span></a>
       </div>
 
@@ -489,9 +505,11 @@
       <div class="eyebrow"><span class="ru">Тест · 2 минуты</span><span class="en">Assessment · 2 minutes</span></div>
       <h2><span class="ru">Сколько вы теряете <span class="accent">на поиске знаний?</span></span><span class="en">How much are you losing <span class="accent">to knowledge search?</span></span></h2>
       <p class="lede"><span class="ru">Ответьте на 8 вопросов — получите оценку потерь в часах и деньгах на ваших собственных цифрах, и поймёте, какой формат TwinWin вам подходит. Считается прямо в браузере, никуда не отправляется.</span><span class="en">Answer 8 questions — get a loss estimate in hours and money based on your own numbers, and see which TwinWin edition fits. Calculated right in your browser, nothing is sent anywhere.</span></p>
+      <div class="quiz-progress"><div class="bar"><div id="qpFill"></div></div><span id="qpText"></span></div>
       <div class="quiz" id="quiz"></div>
       <div class="quiz-actions">
         <button class="btn btn-primary" id="quizCalc"><span class="ru">Посчитать →</span><span class="en">Calculate →</span></button>
+        <span class="quiz-hint" id="quizHint"></span>
       </div>
       <div class="quiz-result" id="quizResult" hidden></div>
     </div>
@@ -618,26 +636,58 @@
       var L = lang();
       quizEl.innerHTML = Q.map(function (q, i) {
         var opts = q.opts.map(function (o, j) {
-          var sel = saved[q.id] === j ? ' selected' : '';
-          return '<option value="' + j + '"' + sel + '>' + o[L] + '</option>';
+          var on = saved[q.id] === j ? ' on' : '';
+          return '<button type="button" class="opt' + on + '" data-q="' + q.id + '" data-i="' + j + '">' + o[L] + '</button>';
         }).join('');
-        var ph = L === 'ru' ? 'Выберите…' : 'Choose…';
-        var phSel = (saved[q.id] === undefined) ? ' selected' : '';
-        return '<div class="qf"><label for="q_' + q.id + '"><span class="qn">' + (L==='ru'?'ВОПРОС':'QUESTION') + ' ' + (i+1) + '/8</span>' + q[L] + '</label>' +
-          '<select id="q_' + q.id + '" data-q="' + q.id + '"><option value="" disabled' + phSel + '>' + ph + '</option>' + opts + '</select></div>';
+        var done = saved[q.id] !== undefined ? ' answered' : '';
+        return '<div class="qf' + done + '" id="qf_' + q.id + '"><label><span class="qn">' + (L==='ru'?'ВОПРОС':'QUESTION') + ' ' + (i+1) + '/8</span>' + q[L] + '</label>' +
+          '<div class="opts">' + opts + '</div></div>';
       }).join('');
-      quizEl.querySelectorAll('select').forEach(function (s) {
-        s.addEventListener('change', function () { saved[s.dataset.q] = parseInt(s.value, 10); });
+      quizEl.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () {
+          saved[b.dataset.q] = parseInt(b.dataset.i, 10);
+          var card = document.getElementById('qf_' + b.dataset.q);
+          card.classList.add('answered');
+          card.classList.remove('missing');
+          card.querySelectorAll('.opt').forEach(function (x) { x.classList.remove('on'); });
+          b.classList.add('on');
+          progress();
+        });
       });
+      progress();
       if (lastResult) renderResult();
     }
 
+    function progress() {
+      var n = Q.filter(function (q) { return saved[q.id] !== undefined; }).length;
+      var L = lang();
+      document.getElementById('qpFill').style.width = (n / Q.length * 100) + '%';
+      document.getElementById('qpText').textContent = L === 'ru' ? ('Отвечено ' + n + ' из ' + Q.length) : (n + ' of ' + Q.length + ' answered');
+      document.getElementById('quizCalc').classList.toggle('ready', n === Q.length);
+      if (n === Q.length) hint(false);
+    }
+
+    function hint(show) {
+      var h = document.getElementById('quizHint');
+      h.textContent = lang() === 'ru' ? 'Остались вопросы без ответа — они подсвечены.' : 'Some questions are unanswered — they are highlighted.';
+      h.classList.toggle('show', !!show);
+    }
+
     function calc() {
-      var missing = Q.some(function (q) { return saved[q.id] === undefined; });
-      if (missing) {
-        alert(lang() === 'ru' ? 'Ответьте на все 8 вопросов.' : 'Please answer all 8 questions.');
+      var firstMissing = null;
+      Q.forEach(function (q) {
+        if (saved[q.id] === undefined) {
+          var el = document.getElementById('qf_' + q.id);
+          el.classList.add('missing');
+          if (!firstMissing) firstMissing = el;
+        }
+      });
+      if (firstMissing) {
+        hint(true);
+        firstMissing.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
+      hint(false);
       function opt(id) { return Q.find(function (q) { return q.id === id; }).opts[saved[id]]; }
       var emp = opt('emp').v, hrs = opt('hrs').v, rate = opt('rate').v;
       var score = (opt('hrs').s || 0) + opt('sys').v + opt('churn').v + opt('onb').v + opt('meet').v + opt('reg').v;
