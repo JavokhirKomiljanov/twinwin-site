@@ -174,6 +174,35 @@
   footer a { color: var(--grey2); text-decoration: none; }
   footer a:hover { color: var(--green); }
 
+  /* architecture */
+  .arch-flow { margin-bottom: 44px; }
+  .arch-flow .step { background: var(--white); }
+  #arch .cards3 .pcard { background: var(--grey3); border-color: transparent; }
+
+  /* industries */
+  .ind-grid .feat .q { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border); font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.55; color: #0b8f74; }
+
+  /* quiz */
+  .quiz { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 44px; }
+  .qf { border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 16px; background: var(--white); }
+  .qf label { display: block; font-size: 14.5px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; line-height: 1.4; }
+  .qf .qn { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--grey2); letter-spacing: 0.1em; display: block; margin-bottom: 6px; }
+  .qf select { width: 100%; padding: 11px 12px; border: 1px solid var(--border); border-radius: 9px; font-family: 'Inter', sans-serif; font-size: 14.5px; background: var(--grey3); color: var(--black); cursor: pointer; }
+  .qf select:focus { outline: 2px solid var(--green); border-color: transparent; }
+  .quiz-actions { margin-top: 26px; }
+  .quiz-result { margin-top: 34px; border-radius: 20px; padding: 38px 34px; background: var(--black-light); color: var(--white); border: 1px solid transparent; background-image: linear-gradient(var(--black-light), var(--black-light)), var(--grad); background-origin: border-box; background-clip: padding-box, border-box; }
+  .quiz-result h3 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .quiz-result .verdict { color: var(--grey2); font-size: 16px; line-height: 1.55; margin-bottom: 26px; max-width: 760px; }
+  .scorebar { height: 12px; border-radius: 100px; background: #3A3A3D; overflow: hidden; margin: 6px 0 26px; }
+  .scorebar .fill { height: 100%; border-radius: 100px; background: var(--grad); transition: width .6s ease; }
+  .score-label { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--grey2); letter-spacing: 0.08em; }
+  .qr-nums { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 24px; margin-bottom: 26px; }
+  .qr-nums .v { font-size: clamp(24px, 3.2vw, 34px); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .qr-nums .l { font-size: 13px; color: var(--grey2); line-height: 1.5; }
+  .quiz-result .rec { border-top: 1px solid var(--border-dark); padding-top: 22px; font-size: 15.5px; line-height: 1.6; color: #E9E9EB; margin-bottom: 24px; }
+  .quiz-result .rec strong { color: var(--green); }
+  .quiz-result .disclaimer { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--grey); letter-spacing: 0.04em; margin-top: 22px; line-height: 1.6; }
+
   @media (max-width: 860px) {
     .seg-grid { grid-template-columns: 1fr; }
     nav .nav-links { display: none; }
@@ -202,9 +231,10 @@
     </a>
     <nav>
       <span class="nav-links">
-        <a href="#how"><span class="ru">Как работает</span><span class="en">How it works</span></a>
+        <a href="#arch"><span class="ru">Архитектура</span><span class="en">Architecture</span></a>
+        <a href="#industries"><span class="ru">Отрасли</span><span class="en">Industries</span></a>
         <a href="#segments"><span class="ru">Тарифы</span><span class="en">Pricing</span></a>
-        <a href="#case"><span class="ru">Кейс</span><span class="en">Case study</span></a>
+        <a href="#test"><span class="ru">Тест</span><span class="en">Assessment</span></a>
         <a href="#faq">FAQ</a>
       </span>
       <button class="lang-btn" id="langToggle" aria-label="Switch language">EN</button>
@@ -295,6 +325,62 @@
     </div>
   </section>
 
+  <section id="arch">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ru">Архитектура</span><span class="en">Architecture</span></div>
+      <h2><span class="ru">Как TwinWin устроен <span class="accent">под капотом</span></span><span class="en">How TwinWin works <span class="accent">under the hood</span></span></h2>
+      <p class="lede"><span class="ru">Одна кодовая база — два режима развёртывания: облако или полностью приватный инстанс на вашем сервере. Отличия — только в конфигурации, никаких «урезанных версий».</span><span class="en">One codebase — two deployment modes: cloud, or a fully private instance on your server. The difference is configuration only — no cut-down editions.</span></p>
+
+      <div class="steps arch-flow">
+        <div class="step">
+          <div class="k"><span class="accent">1 · <span class="ru">КОННЕКТОРЫ</span><span class="en">CONNECTORS</span></span></div>
+          <h3><span class="ru">Захват данных</span><span class="en">Data capture</span></h3>
+          <p><span class="ru">Telegram, Google Drive, Gmail, Bitrix24, AmoCRM, 1С, Slack, транскрипты встреч. Форматы: PDF, DOCX, XLSX, CSV, TXT, MD, PPTX, HTML, email. Инкрементальная синхронизация — без ручной выгрузки.</span><span class="en">Telegram, Google Drive, Gmail, Bitrix24, AmoCRM, 1C, Slack, meeting transcripts. Formats: PDF, DOCX, XLSX, CSV, TXT, MD, PPTX, HTML, email. Incremental sync — no manual exports.</span></p>
+        </div>
+        <div class="step">
+          <div class="k"><span class="accent">2 · <span class="ru">КОНВЕЙЕР</span><span class="en">PIPELINE</span></span></div>
+          <h3><span class="ru">Индексация</span><span class="en">Ingestion</span></h3>
+          <p><span class="ru">Парсинг → разбиение на фрагменты → векторные представления → индекс. Очередь с повторами и dead-letter: сбой одного файла не роняет загрузку. Вместе с каждым документом фиксируется снимок прав доступа.</span><span class="en">Parse → chunk → embed → index. A retry queue with dead-letter handling: one bad file never kills the batch. Each document is stored with a snapshot of its access rights.</span></p>
+        </div>
+        <div class="step">
+          <div class="k"><span class="accent">3 · <span class="ru">ХРАНИЛИЩЕ</span><span class="en">STORAGE</span></span></div>
+          <h3><span class="ru">База знаний</span><span class="en">Knowledge store</span></h3>
+          <p><span class="ru">Postgres + pgvector для смыслового поиска, объектное хранилище для исходных файлов, Redis-очередь для конвейера. Проверенный, переносимый стек — без экзотики, которую некому поддерживать.</span><span class="en">Postgres + pgvector for semantic search, object storage for originals, Redis for the queue. A proven, portable stack — no exotic tech nobody can maintain.</span></p>
+        </div>
+        <div class="step">
+          <div class="k"><span class="accent">4 · RAG</span></div>
+          <h3><span class="ru">Движок ответов</span><span class="en">Answer engine</span></h3>
+          <p><span class="ru">Гибридный поиск (смысл + ключевые слова) отбирает топ-20 фрагментов → повторное ранжирование до топ-8 → лучшая AI-модель собирает ответ с цитатами → порог уверенности: мало оснований — честное «в базе этого нет».</span><span class="en">Hybrid search (semantic + keyword) picks top-20 chunks → reranked to top-8 → a best-in-class model writes a cited answer → confidence gate: weak evidence means an honest "not in the knowledge base."</span></p>
+        </div>
+        <div class="step">
+          <div class="k"><span class="accent">5 · <span class="ru">ИНТЕРФЕЙСЫ</span><span class="en">SURFACES</span></span></div>
+          <h3><span class="ru">Где спрашивают</span><span class="en">Where you ask</span></h3>
+          <p><span class="ru">Веб-чат с панелью источников, Telegram-бот воркспейса, API для ваших систем. Админка: участники и роли, статус документов, аналитика использования.</span><span class="en">Web chat with a sources panel, a workspace Telegram bot, an API for your systems. Admin: members and roles, document status, usage analytics.</span></p>
+        </div>
+      </div>
+
+      <div class="cards3">
+        <div class="pcard">
+          <div class="num"><span class="ru">БЕЗОПАСНОСТЬ</span><span class="en">SECURITY</span></div>
+          <h3><span class="ru">Права — до генерации, не после</span><span class="en">Permissions before generation</span></h3>
+          <p><span class="ru">RBAC (админ / менеджер / сотрудник), поиск фильтруется по правам спрашивающего до того, как модель увидит хоть один фрагмент. Audit log каждого вопроса, ответа и процитированного документа. Шифрование при передаче и хранении.</span><span class="en">RBAC (admin / manager / member); retrieval is filtered by the asker's rights before the model sees a single chunk. Audit log of every question, answer and cited document. Encryption in transit and at rest.</span></p>
+        </div>
+        <div class="pcard">
+          <div class="num"><span class="ru">РАЗВЁРТЫВАНИЕ</span><span class="en">DEPLOYMENT</span></div>
+          <h3><span class="ru">Облако или ваш сервер</span><span class="en">Cloud or your server</span></h3>
+          <p><span class="ru">Облако: изоляция тенантов, каждый воркспейс — отдельный контур. Enterprise: docker-compose / Kubernetes на вашем железе или изолированном VPS в Узбекистане, опция полностью локальной LLM — ноль обращений наружу.</span><span class="en">Cloud: tenant isolation, every workspace its own boundary. Enterprise: docker-compose / Kubernetes on your hardware or an isolated in-country VPS, with a fully local LLM option — zero external calls.</span></p>
+        </div>
+        <div class="pcard">
+          <div class="num"><span class="ru">КАЧЕСТВО</span><span class="en">QUALITY BAR</span></div>
+          <h3><span class="ru">Целевые показатели пилота</span><span class="en">Pilot targets</span></h3>
+          <p><span class="ru">Ответ p95 — до 8 секунд. Пакетная загрузка 5,000 документов. Контрольный замер: не менее 85% приемлемых ответов на 50 реальных вопросах вашей компании (RU + UZ) — до запуска, не после.</span><span class="en">p95 answer latency under 8 seconds. Batch ingestion of 5,000 documents. Acceptance run: at least 85% acceptable answers on 50 of your company's real questions (RU + UZ) — before launch, not after.</span></p>
+        </div>
+      </div>
+
+      <div class="honesty" style="margin-top:40px;"><span class="ru"><strong>Внедрение — это мы, а не «вот вам логин».</strong> Недели 1–2: аудит источников, миграция документов, настройка прав. Недели 2–4: коннекторы, Telegram-бот, обучение команды. Затем контрольный замер качества — и запуск. Поддержка и обновления входят в подписку; впереди по роадмапу — SSO/SAML, тонкие ACL, агентные действия (черновик ответа, постановка задачи).</span><span class="en"><strong>Implementation is us doing the work — not "here's your login."</strong> Weeks 1–2: source audit, document migration, permissions setup. Weeks 2–4: connectors, Telegram bot, team training. Then the acceptance run — and launch. Support and updates are in the subscription; on the roadmap — SSO/SAML, fine-grained ACL, agentic actions (draft a reply, create a task).</span></div>
+    </div>
+  </section>
+
   <section id="segments" class="segments">
     <div class="wrap">
       <div class="eyebrow" style="color:#8b8b90;"><span class="ru">Два формата</span><span class="en">Two editions</span></div>
@@ -342,6 +428,24 @@
     </div>
   </section>
 
+  <section id="industries" class="features">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ru">Отрасли</span><span class="en">Industries</span></div>
+      <h2><span class="ru">Решения для бизнеса, <span class="accent">каким он есть в Узбекистане</span></span><span class="en">Solutions for business <span class="accent">as it actually runs in Uzbekistan</span></span></h2>
+      <p class="lede"><span class="ru">Один и тот же мозг — разные боли. Ниже типовой вопрос, на который TwinWin отвечает за секунды в каждой отрасли.</span><span class="en">Same brain — different pains. Below, the typical question TwinWin answers in seconds for each industry.</span></p>
+      <div class="feat-grid ind-grid">
+        <div class="feat"><div class="ic">🏭</div><h3><span class="ru">Заводы и производство</span><span class="en">Factories &amp; manufacturing</span></h3><p><span class="ru">SOP, техкарты, ГОСТы, техника безопасности разбросаны по папкам; смены не передают знания.</span><span class="en">SOPs, process sheets, GOST standards and safety rules scattered in folders; shifts don't hand over knowledge.</span></p><div class="q"><span class="ru">«Как обслуживать станок X? Какой допуск по ГОСТу?»</span><span class="en">"How do I service machine X? What's the GOST tolerance?"</span></div></div>
+        <div class="feat"><div class="ic">📦</div><h3><span class="ru">Склады и логистика</span><span class="en">Warehouses &amp; logistics</span></h3><p><span class="ru">Тарифы, маршруты, таможня и условия перевозчиков живут в головах диспетчеров и чатах.</span><span class="en">Rates, routes, customs rules and carrier terms live in dispatchers' heads and chats.</span></p><div class="q"><span class="ru">«Какие условия у нас с этим перевозчиком? Порядок приёмки брака?»</span><span class="en">"What are our terms with this carrier? What's the damaged-goods intake procedure?"</span></div></div>
+        <div class="feat"><div class="ic">🏦</div><h3><span class="ru">Банки и финансы</span><span class="en">Banks &amp; finance</span></h3><p><span class="ru">Регламенты, комплаенс, внутренние политики — при жёстких требованиях к данным. Приватный инстанс: ничего не уходит наружу.</span><span class="en">Regulations, compliance, internal policies — under strict data requirements. Private instance: nothing leaves the perimeter.</span></p><div class="q"><span class="ru">«Какие документы нужны для кредита юрлицу по новому регламенту?»</span><span class="en">"Which documents does a corporate loan need under the new regulation?"</span></div></div>
+        <div class="feat"><div class="ic">🛒</div><h3><span class="ru">Ритейл и дистрибуция</span><span class="en">Retail &amp; distribution</span></h3><p><span class="ru">Прайсы, условия поставщиков, акции и стандарты выкладки меняются быстрее, чем их успевают доносить до точек.</span><span class="en">Price lists, supplier terms, promos and merchandising standards change faster than stores hear about them.</span></p><div class="q"><span class="ru">«Какая скидка согласована для сети X? Условия возврата по поставщику Y?»</span><span class="en">"What discount is approved for chain X? Return terms for supplier Y?"</span></div></div>
+        <div class="feat"><div class="ic">🏗️</div><h3><span class="ru">Строительство и девелопмент</span><span class="en">Construction &amp; development</span></h3><p><span class="ru">Сметы, СНиПы, договоры подряда, протоколы планёрок — решения теряются между объектами.</span><span class="en">Estimates, building codes, contractor agreements, site-meeting minutes — decisions get lost between sites.</span></p><div class="q"><span class="ru">«Что решили по объекту на планёрке месяц назад?»</span><span class="en">"What did we decide about the site at last month's meeting?"</span></div></div>
+        <div class="feat"><div class="ic">⚖️</div><h3><span class="ru">Юристы и консалтинг</span><span class="en">Law &amp; consulting</span></h3><p><span class="ru">Прецеденты не переиспользуются: новые юристы заново исследуют то, что фирма уже проходила.</span><span class="en">Precedents never get reused: new lawyers re-research what the firm has already done.</span></p><div class="q"><span class="ru">«Было ли у нас похожее дело? Где заключение по этой схеме?»</span><span class="en">"Have we had a similar case? Where's the opinion on this structure?"</span></div></div>
+        <div class="feat"><div class="ic">🏢</div><h3><span class="ru">Холдинги и группы компаний</span><span class="en">Holdings &amp; groups</span></h3><p><span class="ru">Руководство не видит знания дочерних компаний; договорённости растворяются между встречами.</span><span class="en">Leadership can't see subsidiaries' knowledge; agreements dissolve between meetings.</span></p><div class="q"><span class="ru">«Какие обязательства у дочки Y перед банком? Кто владелец решения?»</span><span class="en">"What are subsidiary Y's obligations to the bank? Who owns the decision?"</span></div></div>
+        <div class="feat"><div class="ic">🏥</div><h3><span class="ru">Клиники и образование</span><span class="en">Clinics &amp; education</span></h3><p><span class="ru">Протоколы, регламенты, учебные программы и приказы — персонал переспрашивает вместо того, чтобы лечить и учить.</span><span class="en">Protocols, regulations, curricula and directives — staff re-ask instead of treating and teaching.</span></p><div class="q"><span class="ru">«Какой протокол действует по этой процедуре с этого года?»</span><span class="en">"Which protocol applies to this procedure as of this year?"</span></div></div>
+      </div>
+    </div>
+  </section>
+
   <section id="case" class="case">
     <div class="wrap">
       <div class="eyebrow"><span class="ru">Кейс из продакшена</span><span class="en">Production case study</span></div>
@@ -377,6 +481,19 @@
         <span class="cl"><span class="ru">Коннекторы:</span><span class="en">Connectors:</span></span>
         <span class="chip">Telegram</span><span class="chip">Google Drive</span><span class="chip">Gmail</span><span class="chip">Bitrix24</span><span class="chip">AmoCRM</span><span class="chip">1C</span><span class="chip">Slack</span><span class="chip">Read.ai</span>
       </div>
+    </div>
+  </section>
+
+  <section id="test">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ru">Тест · 2 минуты</span><span class="en">Assessment · 2 minutes</span></div>
+      <h2><span class="ru">Сколько вы теряете <span class="accent">на поиске знаний?</span></span><span class="en">How much are you losing <span class="accent">to knowledge search?</span></span></h2>
+      <p class="lede"><span class="ru">Ответьте на 8 вопросов — получите оценку потерь в часах и деньгах на ваших собственных цифрах, и поймёте, какой формат TwinWin вам подходит. Считается прямо в браузере, никуда не отправляется.</span><span class="en">Answer 8 questions — get a loss estimate in hours and money based on your own numbers, and see which TwinWin edition fits. Calculated right in your browser, nothing is sent anywhere.</span></p>
+      <div class="quiz" id="quiz"></div>
+      <div class="quiz-actions">
+        <button class="btn btn-primary" id="quizCalc"><span class="ru">Посчитать →</span><span class="en">Calculate →</span></button>
+      </div>
+      <div class="quiz-result" id="quizResult" hidden></div>
     </div>
   </section>
 
@@ -466,6 +583,116 @@
     btn.addEventListener('click', function () {
       setLang(root.classList.contains('ru') ? 'en' : 'ru');
     });
+  })();
+</script>
+<script>
+  (function () {
+    var Q = [
+      { id: 'emp', ru: 'Сколько сотрудников в компании?', en: 'How many employees do you have?',
+        opts: [ {ru:'10–50', en:'10–50', v:30}, {ru:'50–200', en:'50–200', v:100}, {ru:'200–500', en:'200–500', v:300}, {ru:'500+', en:'500+', v:700} ] },
+      { id: 'sys', ru: 'В скольких системах живут знания? (папки, чаты, CRM, почта…)', en: 'How many systems hold your knowledge? (folders, chats, CRM, email…)',
+        opts: [ {ru:'1–2', en:'1–2', v:0}, {ru:'3–5', en:'3–5', v:8}, {ru:'6 и больше', en:'6 or more', v:14} ] },
+      { id: 'hrs', ru: 'Сколько часов в неделю сотрудник тратит на поиск информации и переспрашивание?', en: 'Hours per week an employee spends searching and re-asking?',
+        opts: [ {ru:'Меньше часа', en:'Under an hour', v:0.5, s:0}, {ru:'Около 2 часов', en:'About 2 hours', v:2, s:10}, {ru:'Около 5 часов', en:'About 5 hours', v:5, s:20}, {ru:'8+ часов', en:'8+ hours', v:8, s:28} ] },
+      { id: 'rate', ru: 'Средняя стоимость часа сотрудника (зарплата + налоги), $', en: 'Average fully-loaded cost of an employee hour, $',
+        opts: [ {ru:'~$3', en:'~$3', v:3}, {ru:'~$6', en:'~$6', v:6}, {ru:'~$12', en:'~$12', v:12}, {ru:'~$25+', en:'~$25+', v:25} ] },
+      { id: 'churn', ru: 'Что происходит, когда уходит ключевой сотрудник?', en: 'What happens when a key employee leaves?',
+        opts: [ {ru:'Почти безболезненно', en:'Almost painless', v:0}, {ru:'Теряем заметную часть знаний', en:'We lose a real chunk of knowledge', v:8}, {ru:'Критично: восстанавливаем месяцами', en:'Critical: months to recover', v:14} ] },
+      { id: 'onb', ru: 'Как быстро новичок входит в курс дела?', en: 'How fast does a new hire get up to speed?',
+        opts: [ {ru:'За несколько дней', en:'Days', v:0}, {ru:'За несколько недель', en:'Weeks', v:6}, {ru:'Месяцы', en:'Months', v:12} ] },
+      { id: 'meet', ru: 'Сколько встреч в неделю проходят без фиксации решений?', en: 'How many meetings a week end with no recorded decisions?',
+        opts: [ {ru:'Почти нет', en:'Almost none', v:0}, {ru:'3–5', en:'3–5', v:6}, {ru:'10+', en:'10+', v:12} ] },
+      { id: 'reg', ru: 'Есть ли регулируемые / чувствительные данные (банк, медицина, гос)?', en: 'Do you handle regulated / sensitive data (banking, medical, government)?',
+        opts: [ {ru:'Нет', en:'No', v:0}, {ru:'Да', en:'Yes', v:6} ] }
+    ];
+    var MAXSCORE = 28 + 14 + 14 + 12 + 12 + 6;
+    var quizEl = document.getElementById('quiz');
+    var resEl = document.getElementById('quizResult');
+    var saved = {};
+    var lastResult = null;
+
+    function lang() { return document.documentElement.classList.contains('en') ? 'en' : 'ru'; }
+    function fmt(n) { return Math.round(n).toLocaleString(lang() === 'ru' ? 'ru-RU' : 'en-US'); }
+
+    function render() {
+      var L = lang();
+      quizEl.innerHTML = Q.map(function (q, i) {
+        var opts = q.opts.map(function (o, j) {
+          var sel = saved[q.id] === j ? ' selected' : '';
+          return '<option value="' + j + '"' + sel + '>' + o[L] + '</option>';
+        }).join('');
+        var ph = L === 'ru' ? 'Выберите…' : 'Choose…';
+        var phSel = (saved[q.id] === undefined) ? ' selected' : '';
+        return '<div class="qf"><label for="q_' + q.id + '"><span class="qn">' + (L==='ru'?'ВОПРОС':'QUESTION') + ' ' + (i+1) + '/8</span>' + q[L] + '</label>' +
+          '<select id="q_' + q.id + '" data-q="' + q.id + '"><option value="" disabled' + phSel + '>' + ph + '</option>' + opts + '</select></div>';
+      }).join('');
+      quizEl.querySelectorAll('select').forEach(function (s) {
+        s.addEventListener('change', function () { saved[s.dataset.q] = parseInt(s.value, 10); });
+      });
+      if (lastResult) renderResult();
+    }
+
+    function calc() {
+      var missing = Q.some(function (q) { return saved[q.id] === undefined; });
+      if (missing) {
+        alert(lang() === 'ru' ? 'Ответьте на все 8 вопросов.' : 'Please answer all 8 questions.');
+        return;
+      }
+      function opt(id) { return Q.find(function (q) { return q.id === id; }).opts[saved[id]]; }
+      var emp = opt('emp').v, hrs = opt('hrs').v, rate = opt('rate').v;
+      var score = (opt('hrs').s || 0) + opt('sys').v + opt('churn').v + opt('onb').v + opt('meet').v + opt('reg').v;
+      var pct = Math.round(score / MAXSCORE * 100);
+      var hoursYear = emp * hrs * 46;
+      var costYear = hoursYear * rate;
+      var recover = costYear * 0.3;
+      var enterprise = (emp >= 200) || (opt('reg').v > 0);
+      var moCost = enterprise ? 2500 : 900;
+      var implCost = enterprise ? 15000 : 5000;
+      var twYear1 = moCost * 12 + implCost;
+      var ratio = recover / twYear1;
+      lastResult = { pct: pct, hoursYear: hoursYear, costYear: costYear, recover: recover, enterprise: enterprise, ratio: ratio };
+      renderResult();
+      resEl.hidden = false;
+      resEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function renderResult() {
+      var r = lastResult; if (!r) return;
+      var L = lang();
+      var verdict;
+      if (r.pct >= 65) verdict = L === 'ru'
+        ? 'Высокая зависимость от «знаний в головах». Судя по вашим ответам, компания платит за поиск информации каждый день — это тот случай, когда второй мозг окупается быстрее всего.'
+        : 'Heavy dependence on "knowledge in heads." By your answers, the company pays for information search every single day — this is where a second brain pays back fastest.';
+      else if (r.pct >= 35) verdict = L === 'ru'
+        ? 'Заметный потенциал. Часть знаний уже под контролем, но потери на поиске и передаче знаний реальные — и растут вместе с командой.'
+        : 'Real potential. Some knowledge is under control, but search and handover losses are real — and they grow with the team.';
+      else verdict = L === 'ru'
+        ? 'Пока терпимо. Потери есть, но не критичные. Имеет смысл вернуться к теме при росте команды или перед масштабированием.'
+        : 'Tolerable for now. Losses exist but are not critical. Worth revisiting as the team grows or before scaling.';
+      var ed = r.enterprise
+        ? (L === 'ru' ? 'Enterprise — приватный инстанс' : 'Enterprise — private instance')
+        : (L === 'ru' ? 'Business — облако' : 'Business — cloud');
+      var payback = r.ratio >= 1
+        ? (L === 'ru' ? 'потенциальная экономия перекрывает стоимость первого года примерно в ' + (Math.round(r.ratio * 10) / 10) + '×' : 'potential savings cover the first-year cost roughly ' + (Math.round(r.ratio * 10) / 10) + '× over')
+        : (L === 'ru' ? 'на ваших цифрах окупаемость дольше года — честно скажем это и на демо' : 'on your numbers payback takes over a year — we\'ll tell you the same honestly on the demo');
+      resEl.innerHTML =
+        '<h3>' + (L === 'ru' ? 'Ваш результат: ' : 'Your result: ') + r.pct + '/100</h3>' +
+        '<div class="verdict">' + verdict + '</div>' +
+        '<div class="scorebar"><div class="fill" style="width:' + r.pct + '%"></div></div>' +
+        '<div class="score-label"><span>' + (L === 'ru' ? 'НИЗКАЯ ПОТРЕБНОСТЬ' : 'LOW NEED') + '</span><span>' + (L === 'ru' ? 'ВЫСОКАЯ ПОТРЕБНОСТЬ' : 'HIGH NEED') + '</span></div>' +
+        '<div class="qr-nums">' +
+          '<div><div class="v accent">' + fmt(r.hoursYear) + ' ' + (L === 'ru' ? 'ч' : 'h') + '</div><div class="l">' + (L === 'ru' ? 'уходит на поиск информации в год (по вашим ответам)' : 'spent on information search per year (from your answers)') + '</div></div>' +
+          '<div><div class="v accent">$' + fmt(r.costYear) + '</div><div class="l">' + (L === 'ru' ? 'стоимость этих часов в год' : 'what those hours cost per year') + '</div></div>' +
+          '<div><div class="v accent">$' + fmt(r.recover) + '</div><div class="l">' + (L === 'ru' ? 'возврат при сокращении поиска всего на 30%' : 'recovered if search drops by just 30%') + '</div></div>' +
+        '</div>' +
+        '<div class="rec">' + (L === 'ru' ? 'Рекомендуемый формат: ' : 'Recommended edition: ') + '<strong>' + ed + '</strong> — ' + payback + '.</div>' +
+        '<a class="btn btn-primary" href="https://t.me/Javokhir_komiljonov">' + (L === 'ru' ? 'Обсудить мои цифры на демо →' : 'Discuss my numbers on a demo →') + '</a>' +
+        '<div class="disclaimer">' + (L === 'ru' ? 'Оценка построена только на ваших ответах, считается в браузере и никуда не отправляется. Это ориентир, а не оферта — точный расчёт делаем на демо на ваших реальных данных.' : 'This estimate is built only on your answers, runs in your browser and is never sent anywhere. It\'s a guide, not an offer — the precise calculation happens on the demo with your real data.') + '</div>';
+    }
+
+    document.getElementById('quizCalc').addEventListener('click', calc);
+    document.getElementById('langToggle').addEventListener('click', render);
+    render();
   })();
 </script>
 </body>
